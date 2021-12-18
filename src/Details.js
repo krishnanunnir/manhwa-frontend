@@ -22,7 +22,7 @@ class Details extends Component {
   refreshList = () => {
     axios
       .get("/api/manhwa/" + this.manhwaSlug)
-      .then((res) => this.setState({ manhwa: res.data }));
+      .then((res) => this.setState({ manhwa: res.data })).catch((error) =>console.log(error));;
   };
 
   render() {

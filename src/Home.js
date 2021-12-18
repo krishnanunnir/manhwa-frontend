@@ -9,6 +9,7 @@ import "./Home.css";
 import "./Manhwa.css";
 import "./index.css";
 import { Alert } from "reactstrap";
+import {baseUrl} from "./Constant"
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -53,10 +54,10 @@ class Home extends Component {
     if (manhwaList != null) {
       this.setState({ manhwaList });
     }
-    axios.get("/api/manhwa").then((res) => {
+    axios.get(`${baseUrl}/api/manhwa/`).then((res) => {
       this.setState({ manhwaList: res.data.results, next: res.data.next });
       localStorage.setItem("manhwaList", JSON.stringify(res.data.results));
-    });
+    }).catch((error) =>console.log(error));;
   };
   fetchData = () => {
     axios

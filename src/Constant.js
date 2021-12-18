@@ -1,0 +1,1 @@
+export const baseUrl =process.env.IS_DEV==='true'?'http://127.0.0.1:8080':'http://159.89.82.215';

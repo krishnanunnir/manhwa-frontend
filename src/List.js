@@ -4,6 +4,7 @@ import Manhwa from "./components/Manhwa";
 import { Alert } from "reactstrap";
 import "./Home.css";
 import "./Manhwa.css";
+import {baseUrl} from "./Constant"
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -30,14 +31,14 @@ class Home extends Component {
   }
 
   refreshList = () => {
-    axios.get("/api/list/" + this.listSlug).then((res) =>
+    axios.get(`${baseUrl}/api/list/` + this.listSlug).then((res) =>
       this.setState({
         manhwaList: res.data.manhwas,
         title: res.data.title,
         identifier: res.data.identifier,
         description: res.data.description,
       })
-    );
+    ).catch((error) => this.refreshList());
   };
 
   manhwaModalToggle = () => {
