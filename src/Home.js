@@ -167,23 +167,6 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
-        <div className="navbar d-flex justify-content-end">
-          <button className="btn btn-primary mr-2" onClick={this.clearList}>
-            Clear list
-          </button>
-          <button
-            className="btn btn-primary mr-2"
-            onClick={this.listModalToggle}
-          >
-            Generate list
-          </button>
-          <button
-            className="btn btn-primary mr-2"
-            onClick={this.manhwaModalToggle}
-          >
-            Add a new Manhwa
-          </button>
-        </div>
         <div className="row justify-content-center">
           <div className="col-md-6 col-md-offset-3">
             <Alert
@@ -196,18 +179,38 @@ class Home extends Component {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-md-6 col-md-offset-3">
-            <h1>Find the best Manhwas</h1>
+          <div className="col-md-6 col-md-offset-3 mb-2" style={{ textAlign: "center" }}>
+            <h1>Manre</h1>
           </div>
+        </div>
+        <div className="row justify-content-center mb-4">
+          <button className="btn btn-primary mr-2" onClick={this.clearList}>
+            Clear list
+          </button>
+          <button
+            className="btn btn-primary mr-2"
+            onClick={this.listModalToggle}
+          >
+            Generate list
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={this.manhwaModalToggle}
+          >
+            Add Manhwa
+          </button>
         </div>
         <div className="mb-24">
           <div className="row justify-content-center">
             <div className="col-md-6 col-md-offset-3">
               <p>
-                I remember reading Solo leveling get hooked and trying to find
-                good Manhwas - the struggle is real 😰.
+                I remember reading Solo leveling and getting my first shot of manhwa and being instantly hooked.
+                
+                I have been from then on forever on the hunt for a good manhwa, so here is my gift to you.
               </p>
-              <p> Here is a gift from me to the community</p>
+              <p>
+                Manre - Find new Manhwas and see what others have to say!😄
+              </p>
             </div>
           </div>
         </div>
