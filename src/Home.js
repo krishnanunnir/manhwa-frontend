@@ -17,7 +17,7 @@ class Home extends Component {
     this.state = {
       manhwaList: [],
       next: null,
-      more_exist: false,
+      more_exist: true,
       newManhwaModal: false,
       listModal: false,
       activeManhwa: [],
