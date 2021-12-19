@@ -102,7 +102,7 @@ class Home extends Component {
     }
     axios({
       method: "post",
-      url: "/api/manhwa/",
+      url: `${baseUrl}/api/manhwa/`,
       data: formData,
       headers: {
         "Accept-Language": "en-US,en;q=0.8",
@@ -126,7 +126,7 @@ class Home extends Component {
     item = { ...item, manhwas: this.state.activeManhwa };
     axios({
       method: "post",
-      url: "/api/list/",
+      url: `${baseUrl}/api/list/`,
       data: JSON.stringify(item),
       headers: {
         accept: "application/json",

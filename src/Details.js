@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import Manhwa from "./components/Manhwa";
 import Disqus from "disqus-react";
 import axios from "axios";
+import {baseUrl} from "./Constant"
 
 class Details extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Details extends Component {
 
   refreshList = () => {
     axios
-      .get("/api/manhwa/" + this.manhwaSlug)
+      .get(`${baseUrl}/api/manhwa/` + this.manhwaSlug)
       .then((res) => this.setState({ manhwa: res.data })).catch((error) =>console.log(error));;
   };
 
