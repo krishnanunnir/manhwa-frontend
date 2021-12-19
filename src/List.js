@@ -31,7 +31,7 @@ class Home extends Component {
   }
 
   refreshList = () => {
-    axios.get(`${baseUrl}/api/list/` + this.listSlug).then((res) =>
+    axios.get(`${baseUrl}/api/list/${this.listSlug}/`).then((res) =>
       this.setState({
         manhwaList: res.data.manhwas,
         title: res.data.title,
