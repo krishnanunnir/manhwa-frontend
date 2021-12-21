@@ -50,13 +50,8 @@ class Home extends Component {
   }
 
   refreshList = () => {
-    var manhwaList = JSON.parse(localStorage.getItem("manhwaList"));
-    if (manhwaList != null) {
-      this.setState({ manhwaList });
-    }
     axios.get(`${baseUrl}/api/manhwa/`).then((res) => {
       this.setState({ manhwaList: res.data.results, next: res.data.next });
-      localStorage.setItem("manhwaList", JSON.stringify(res.data.results));
     }).catch((error) =>console.log(error));;
   };
   fetchData = () => {
