@@ -32,7 +32,7 @@ class Manhwa extends Component {
                   alt={item.description}
                   style={{
                     height: "auto",
-                    width: "auto",
+                    width: "5em",
                     maxHeight: "7em",
                     maxWidth: "7em",
                   }}
