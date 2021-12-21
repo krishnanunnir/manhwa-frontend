@@ -25,17 +25,30 @@ class Manhwa extends Component {
           <div
             className={`col-md-6 col-md-offset-3 d-flex flex-row ${this.selected}`}
           >
-            <div className="d-flex flex-column  justify-content-center">
-              <img
-                src={item.cover_image}
-                alt={item.description}
-                style={{
-                  height: "auto",
-                  width: "auto",
-                  maxHeight: "7em",
-                  maxWidth: "7em",
-                }}
-              />
+            <div className="d-flex flex-column justify-content-center">
+              <div className="d-flex flex-row">
+                <img
+                  src={item.cover_image}
+                  alt={item.description}
+                  style={{
+                    height: "auto",
+                    width: "auto",
+                    maxHeight: "7em",
+                    maxWidth: "7em",
+                  }}
+                />
+              </div>
+              <div className="d-flex flex-row mt-4 justify-content-center">
+                {(() => {
+                  if (item.status === "Ongoing") {
+                    return <Badge color="info">{item.status}</Badge>;
+                  } else if (item.status === "Completed") {
+                    return <Badge color="success">{item.status}</Badge>;
+                  } else {
+                    return <Badge color="danger">{item.status}</Badge>;
+                  }
+                })()}
+              </div>
             </div>
             <div>
               <div className="d-flex flex-column p-4">
@@ -60,18 +73,16 @@ class Manhwa extends Component {
                     }
                   })()}
                 </h5>
-                <p className="pt-2">{item.description} </p>
-                <p>
-                  {(() => {
-                    if (item.status === "Ongoing") {
-                      return <Badge color="info">{item.status}</Badge>;
-                    } else if (item.status === "Completed") {
-                      return <Badge color="success">{item.status}</Badge>;
-                    } else {
-                      return <Badge color="danger">{item.status}</Badge>;
-                    }
-                  })()}
+                <p className="my-2">
+                  {item.tags.map(function (tag) {
+                    return (
+                      <Badge color="primary" className="mr-2">
+                        {tag.name}
+                      </Badge>
+                    );
+                  })}
                 </p>
+                <p className="pt-2">{item.description} </p>
               </div>
             </div>
           </div>
