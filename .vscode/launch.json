@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Brave against localhost",
+            "runtimeExecutable": "/Applications/Brave Browser Dev.app/Contents/MacOS/Brave Browser Dev",
+            "url": "http://0.0.0.0:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch localhost",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://0.0.0.0:3000",
+            "webRoot": "${workspaceFolder}",
+            "pathMappings": [
+                {
+                    "url": "file:///Users/krishnanunnir/Projects/manhwa-frontend/frontend/src",
+                    "path": "${workspaceFolder}/src"
+                }
+            ]
+        }
+    ]
+}
