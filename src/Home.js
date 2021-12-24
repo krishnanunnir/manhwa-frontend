@@ -89,10 +89,11 @@ class Home extends Component {
     this.listModalToggle();
   };
 
-  handleManhwaModalSubmit = (item) => {
-    console.log(item);
+  handleManhwaModalSubmit = (item,tags) => {
+    console.log(tags);
     this.manhwaModalToggle();
     const formData = new FormData();
+    formData.append("tags", tags);
     for (var key in item) {
       formData.append(key, item[key]);
     }

@@ -164,13 +164,11 @@ export default class CustomModal extends Component {
             color="success"
             onClick={() => {
               // get all values for multi select field tags
-              var select = document.getElementById("tags");
-              var selected = [...select.options]
+              const select = document.getElementById("tags");
+              const selected = [...select.options]
                 .filter((option) => option.selected)
                 .map((option) => option.value);
-              const manhwa = { ...this.state.manhwa, tags: selected };
-              this.setState({ manhwa });
-              onSave(this.state.manhwa);
+              onSave(this.state.manhwa,selected);
             }}
           >
             Save
