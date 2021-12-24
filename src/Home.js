@@ -90,11 +90,13 @@ class Home extends Component {
   };
 
   handleManhwaModalSubmit = (item) => {
+    console.log(item);
     this.manhwaModalToggle();
     const formData = new FormData();
     for (var key in item) {
       formData.append(key, item[key]);
     }
+    console.log(formData.get("tags"));
     axios({
       method: "post",
       url: `${baseUrl}/api/manhwa/`,
