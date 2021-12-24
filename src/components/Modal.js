@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { baseUrl } from "../Constant";
 import {
   Button,
   Modal,
@@ -25,10 +27,27 @@ export default class CustomModal extends Component {
         author: "",
         status: "Ongoing",
         coverimage: null,
+        tags: [],
       },
+      tags: [],
       dropdown: false,
     };
   }
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
+  refreshList = () => {
+    axios
+      .get(`${baseUrl}/api/tags/`)
+      .then((res) =>
+        this.setState({
+          tags: res.data.results,
+        })
+      )
+      .catch((error) => this.refreshList());
+  };
 
   handleChange = (e) => {
     let { name, value } = e.target;
@@ -85,6 +104,26 @@ export default class CustomModal extends Component {
               />
             </FormGroup>
           </Form>
+          <FormGroup>
+            <Label for="manhwaTags">
+              Add manhwa types(Use CTRL to select multiple types)
+            </Label>
+            <Input
+              type="select"
+              multiple
+              defaultValue={null}
+              id="tags"
+              className="dropselect_tag"
+              name="tags"
+              onSave={this.handleChange}
+            >
+              {this.state.tags.map((el) => (
+                <option key={el.slug} value={el.slug}>
+                  {el.name}
+                </option>
+              ))}
+            </Input>
+          </FormGroup>
           <Dropdown isOpen={this.state.dropdown} toggle={this.handleDropdodwn}>
             <DropdownToggle caret>{this.state.manhwa.status}</DropdownToggle>
             <DropdownMenu right>
@@ -121,7 +160,19 @@ export default class CustomModal extends Component {
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={() => onSave(this.state.manhwa)}>
+          <Button
+            color="success"
+            onClick={() => {
+              // get all values for multi select field tags
+              var select = document.getElementById("tags");
+              var selected = [...select.options]
+                .filter((option) => option.selected)
+                .map((option) => option.value);
+              const manhwa = { ...this.state.manhwa, tags: selected };
+              this.setState({ manhwa });
+              onSave(this.state.manhwa);
+            }}
+          >
             Save
           </Button>
         </ModalFooter>
