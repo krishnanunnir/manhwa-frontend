@@ -30,6 +30,7 @@ class Manhwa extends Component {
                 <img
                   src={item.cover_image}
                   alt={item.description}
+                  loading="lazy"
                   style={{
                     height: "auto",
                     width: "5em",
@@ -74,13 +75,7 @@ class Manhwa extends Component {
                   })()}
                 </h5>
                 <p className="my-2">
-                  {item.tags.map(function (tag) {
-                    return (
-                      <Badge color="primary" className="mr-2">
-                        {tag.name}
-                      </Badge>
-                    );
-                  })}
+                  {item.tags.map((tag) =>  (<Badge color="primary" className="mr-2" key='{item.slug}'>{tag.name}</Badge>))}
                 </p>
                 <p className="pt-2">{item.description} </p>
               </div>

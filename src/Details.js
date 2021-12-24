@@ -13,7 +13,9 @@ class Details extends Component {
     } = props.match;
     this.manhwaSlug = manhwaSlug;
     this.state = {
-      manhwa: {},
+      manhwa: {
+        tags: [],
+      },
     };
   }
   componentDidMount() {
