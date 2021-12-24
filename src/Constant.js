@@ -1,1 +1,1 @@
-export const baseUrl =process.env.IS_DEV==='true'?'http://127.0.0.1:8080':'https://v1.manre.art';
+export const baseUrl =process.env.IS_DEV==='true'?'http://0.0.0.0:8000':'https://v1.manre.art';
