@@ -27,7 +27,6 @@ export default class CustomModal extends Component {
         author: "",
         status: "Ongoing",
         coverimage: null,
-        tags: [],
       },
       tags: [],
       dropdown: false,
