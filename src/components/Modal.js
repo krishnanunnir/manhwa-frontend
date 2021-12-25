@@ -42,7 +42,7 @@ export default class CustomModal extends Component {
       .get(`${baseUrl}/api/tags/`)
       .then((res) =>
         this.setState({
-          tags: res.data.results,
+          tags: res.data,
         })
       )
       .catch((error) => this.refreshList());
