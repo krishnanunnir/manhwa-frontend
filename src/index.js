@@ -7,6 +7,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Details from "./Details";
 import NotFound from "./NotFound";
 import List from "./List";
+import TagsList from "./TagsList";
 import "bootstrap/dist/css/bootstrap.css";
 import withTracker from "./WithTracker";
 
@@ -14,6 +15,7 @@ ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path="/manhwa/:manhwaSlug" component={withTracker(Details)} />
+      <Route exact path="/tag/:tagsSlug" component={withTracker(TagsList)} />
       <Route exact path="/list/:listSlug" component={withTracker(List)} />
       <Route exact path="/" component={withTracker(Home)} />
       <Route path="/" component={withTracker(NotFound)} />

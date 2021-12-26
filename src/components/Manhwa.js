@@ -76,7 +76,7 @@ class Manhwa extends Component {
                 </h5>
                 <p className="my-2">
                   {item.type==="Manhua"? <Badge color="danger" className="mr-2">{item.type}</Badge>: null}
-                  {item.tags.map((tag) =>  (<Badge color="primary" className="mr-2" key='{item.slug}'>{tag.name}</Badge>))}
+                  {item.tags.map((tag) =>  (<Badge color="primary" className="mr-2" key={tag.slug}> <Link to={`/tag/${tag.slug}/`} className="link">{tag.name}</Link></Badge>))}
                 </p>
                 <p className="pt-2">{item.description} </p>
               </div>
