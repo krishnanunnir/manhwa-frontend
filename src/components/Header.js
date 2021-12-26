@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Alert } from "reactstrap";
 
 export default class Header extends Component {
 	constructor(props) {
@@ -8,6 +9,7 @@ export default class Header extends Component {
 			listModal: false,
 		};
 	}
+
 
 	render() {
 		const { listModalToggle, manhwaModalToggle, clearList } = this.props;
