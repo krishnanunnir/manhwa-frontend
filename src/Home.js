@@ -10,7 +10,6 @@ import "./Manhwa.css";
 import "./index.css";
 import { Alert } from "reactstrap";
 import {baseUrl} from "./Constant"
-import Header from "./components/Header"
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +42,6 @@ class Home extends Component {
       showMessage: !this.state.showMessage,
     });
   };
-
   setMessage(type, message) {
     this.setState({
       showMessage: true,
@@ -165,22 +163,53 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
-        <Header
-          manhwaModalToggle={this.manhwaModalToggle}
-          clearList={this.clearList}
-          listModalToggle={this.listModalToggle}
-        />
         <div className="row justify-content-center">
-					<div className="col-md-6 col-md-offset-3">
-						<Alert
-							color={this.state.message["type"]}
-							isOpen={this.state.showMessage}
-							toggle={this.toggleMessage}
-						>
-							{this.state.message["message"]}
-						</Alert>
-					</div>
-				</div>
+          <div className="col-md-6 col-md-offset-3">
+            <Alert
+              color={this.state.message["type"]}
+              isOpen={this.state.showMessage}
+              toggle={this.toggleMessage}
+            >
+              {this.state.message["message"]}
+            </Alert>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-md-offset-3 mb-2" style={{ textAlign: "center" }}>
+            <h1>Manre</h1>
+          </div>
+        </div>
+        <div className="row justify-content-center mb-4">
+          <button className="btn btn-primary mr-2" onClick={this.clearList}>
+            Clear list
+          </button>
+          <button
+            className="btn btn-primary mr-2"
+            onClick={this.listModalToggle}
+          >
+            Generate list
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={this.manhwaModalToggle}
+          >
+            Add Manhwa
+          </button>
+        </div>
+        <div className="mb-24">
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-md-offset-3">
+              <p>
+                I remember reading Solo leveling and getting my first shot of manhwa and being instantly hooked.
+                
+                I have been from then on forever on the hunt for a good manhwa, so here is my gift to you.
+              </p>
+              <p>
+                Manre - Find new Manhwas and see what others have to say!😄
+              </p>
+            </div>
+          </div>
+        </div>
         <InfiniteScroll
           dataLength={this.state.manhwaList.length} //This is important field to render the next data
           next={this.fetchData}
