@@ -10,6 +10,7 @@ import "./Manhwa.css";
 import "./index.css";
 import { Alert } from "reactstrap";
 import { baseUrl } from "./Constant";
+import {debounce} from 'lodash';
 class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -60,6 +61,23 @@ class Home extends Component {
 				});
 			})
 			.catch((error) => console.log(error));
+	};
+	handleSearch = debounce(query => {
+		axios
+			.get(`${baseUrl}/api/manhwa/?search=${query}`)
+			.then((res) => {
+				this.setState({
+					manhwaList: res.data.results,
+					more_exist: res.data.next != null,
+					next: res.data.next,
+				});
+			})
+			.catch((error) => console.log(error));
+	}, 1000);
+
+	searchList = (event) => {
+		let input = event.target.value.toLowerCase();
+		this.handleSearch(input);
 	};
 	fetchData = () => {
 		axios
@@ -216,6 +234,11 @@ class Home extends Component {
 						</div>
 					</div>
 				</div>
+				<div className="row justify-content-center mb-4">
+					<div className="col-md-6 col-md-offset-3">
+						<input type="text" className="form-control" placeholder="Search by Manhwa name" onChange={this.searchList}/>
+					</div>
+				</div>
 				<InfiniteScroll
 					dataLength={this.state.manhwaList.length} //This is important field to render the next data
 					next={this.fetchData}
@@ -227,7 +250,7 @@ class Home extends Component {
 					}
 					endMessage={
 						<p style={{ textAlign: "center" }}>
-							<b>Yay! You have seen it all</b>
+							<b>That is the end of it!</b>
 						</p>
 					}
 					// below props only if you need pull down functionality
