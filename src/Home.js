@@ -53,7 +53,11 @@ class Home extends Component {
 		axios
 			.get(`${baseUrl}/api/manhwa/`)
 			.then((res) => {
-				this.setState({ manhwaList: res.data.results, next: res.data.next });
+				this.setState({
+					manhwaList: res.data.results,
+					more_exist: res.data.next != null,
+					next: res.data.next,
+				});
 			})
 			.catch((error) => console.log(error));
 	};
