@@ -10,7 +10,7 @@ import "./Manhwa.css";
 import "./index.css";
 import { Alert } from "reactstrap";
 import { baseUrl } from "./Constant";
-import {debounce} from 'lodash';
+import { debounce } from "lodash";
 class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -19,10 +19,12 @@ class Home extends Component {
 			manhwaList: [],
 			next: null,
 			more_exist: true,
+			placeholder: "Search for Manhwa by name",
 			newManhwaModal: false,
 			listModal: false,
 			activeManhwa: [],
 			showMessage: false,
+			searchText: null,
 			message: {
 				type: "danger",
 				message: "If you see this, send a screenshot please!",
@@ -58,11 +60,12 @@ class Home extends Component {
 					manhwaList: res.data.results,
 					more_exist: res.data.next != null,
 					next: res.data.next,
+					placeholder: "Search from over " + res.data.count + " Manhwas!!",
 				});
 			})
 			.catch((error) => console.log(error));
 	};
-	handleSearch = debounce(query => {
+	handleSearch = debounce((query) => {
 		axios
 			.get(`${baseUrl}/api/manhwa/?search=${query}`)
 			.then((res) => {
@@ -70,12 +73,14 @@ class Home extends Component {
 					manhwaList: res.data.results,
 					more_exist: res.data.next != null,
 					next: res.data.next,
+					searchText: null,
 				});
 			})
 			.catch((error) => console.log(error));
 	}, 1000);
 
 	searchList = (event) => {
+		this.setState({ searchText: "Searching..." });
 		let input = event.target.value.toLowerCase();
 		this.handleSearch(input);
 	};
@@ -194,50 +199,53 @@ class Home extends Component {
 							color={this.state.message["type"]}
 							isOpen={this.state.showMessage}
 							toggle={this.toggleMessage}
+							style={{ position: "fixed" }}
+							className="mt-4"
 						>
 							{this.state.message["message"]}
 						</Alert>
 					</div>
 				</div>
-				<div className="row justify-content-center">
-					<div
-						className="col-md-6 col-md-offset-3 mb-2"
-						style={{ textAlign: "center" }}
-					>
+				<div className="row my-4 d-flex justify-content-between">
+					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
 						<h1>Manre</h1>
 					</div>
-				</div>
-				<div className="row justify-content-center mb-4">
-					<button className="btn btn-primary mr-2" onClick={this.clearList}>
-						Clear list
-					</button>
-					<button
-						className="btn btn-primary mr-2"
-						onClick={this.listModalToggle}
-					>
-						Generate list
-					</button>
-					<button className="btn btn-primary" onClick={this.manhwaModalToggle}>
-						Add Manhwa
-					</button>
-				</div>
-				<div className="mb-24">
-					<div className="row justify-content-center">
-						<div className="col-md-6 col-md-offset-3">
-							<p>
-								I remember reading Solo leveling and getting my first shot of
-								manhwa and being instantly hooked. I have been from then on
-								forever on the hunt for a good manhwa, so here is my gift to
-								you.
-							</p>
-							<p>Manre - Find new Manhwas and see what others have to say!😄</p>
-						</div>
+					<div className="d-flex align-items-center">
+						<a
+							href="javascript:void(null);"
+							className="mr-4 nav-text"
+							onClick={this.clearList}
+						>
+							Clear list
+						</a>
+						<a
+							href="javascript:void(null);"
+							className="mr-4 nav-text"
+							onClick={this.listModalToggle}
+						>
+							Generate list
+						</a>
+						<a
+							href="javascript:void(null);"
+							onClick={this.manhwaModalToggle}
+							className="nav-text"
+						>
+							Add Manhwa
+						</a>
 					</div>
 				</div>
 				<div className="row justify-content-center mb-4">
 					<div className="col-md-6 col-md-offset-3">
-						<input type="text" className="form-control" placeholder="Search by Manhwa name" onChange={this.searchList}/>
+						<input
+							type="text"
+							className="form-control"
+							placeholder={this.state.placeholder}
+							onChange={this.searchList}
+						/>
 					</div>
+				</div>
+				<div className="row justify-content-center mb-4">
+					<b>{this.state.searchText}</b>
 				</div>
 				<InfiniteScroll
 					dataLength={this.state.manhwaList.length} //This is important field to render the next data

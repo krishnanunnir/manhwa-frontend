@@ -111,6 +111,8 @@ class TagsList extends Component {
 							color={this.state.message["type"]}
 							isOpen={this.state.showMessage}
 							toggle={this.toggleMessage}
+							style={{position: 'fixed'}}
+							className="mt-4"
 						>
 							{this.state.message["message"]}
 						</Alert>
@@ -121,7 +123,7 @@ class TagsList extends Component {
 						className="col-md-6 col-md-offset-3 mb-2"
 						style={{ textAlign: "center" }}
 					>
-						<h1>All Manhwa's tagged {this.state.tagsSlug}</h1>
+						<h2 className="mt-4 sitetitle">{this.state.tagsSlug.toUpperCase()} manhwas </h2>
 					</div>
 				</div>
 				<InfiniteScroll
