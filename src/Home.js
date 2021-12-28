@@ -24,7 +24,6 @@ class Home extends Component {
 			listModal: false,
 			activeManhwa: [],
 			showMessage: false,
-			searchText: null,
 			message: {
 				type: "danger",
 				message: "If you see this, send a screenshot please!",
@@ -73,14 +72,13 @@ class Home extends Component {
 					manhwaList: res.data.results,
 					more_exist: res.data.next != null,
 					next: res.data.next,
-					searchText: null,
 				});
 			})
 			.catch((error) => console.log(error));
 	}, 1000);
 
 	searchList = (event) => {
-		this.setState({ searchText: "Searching..." });
+		this.setState({ manhwaList: [], more_exist: true });
 		let input = event.target.value.toLowerCase();
 		this.handleSearch(input);
 	};
@@ -243,9 +241,6 @@ class Home extends Component {
 							onChange={this.searchList}
 						/>
 					</div>
-				</div>
-				<div className="row justify-content-center mb-4">
-					<b>{this.state.searchText}</b>
 				</div>
 				<InfiniteScroll
 					dataLength={this.state.manhwaList.length} //This is important field to render the next data
