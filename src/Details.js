@@ -4,6 +4,7 @@ import Manhwa from "./components/Manhwa";
 import Disqus from "disqus-react";
 import axios from "axios";
 import {baseUrl} from "./Constant"
+import {Helmet} from "react-helmet";
 
 class Details extends Component {
   constructor(props) {
@@ -29,8 +30,15 @@ class Details extends Component {
   };
 
   render() {
+	  this.manhwaTitle = this.state.manhwa.title;
     return (
       <main className="details container">
+        <Helmet>
+                <meta charSet="utf-8" />
+				<title>{this.manhwaTitle + " | Manre"}</title>
+				<meta name="description" content={"Find out more about '" + this.manhwaTitle +" manhwa"}/>‍
+        </Helmet>
+
         <Manhwa item={this.state.manhwa} detailsPage={true} />
         <div className="row justify-content-center">
           <div className="col-md-6 col-md-offset-3">
