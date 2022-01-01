@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Manhwa from "./components/Manhwa";
@@ -71,7 +72,16 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
- 	<div className="row mt-4 d-flex justify-content-between mb-0">
+ 		<Helmet>
+			<meta charSet="utf-8" />
+			<title>{this.state.title + " | Manre"}</title>
+			<meta
+				name="description"
+				content={"Find " + this.state.description + " manhwas"}
+			/>
+		</Helmet>
+
+<div className="row mt-4 d-flex justify-content-between mb-0">
 		<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
 			<h1><Link to="/">Manre</Link></h1>
 		</div>

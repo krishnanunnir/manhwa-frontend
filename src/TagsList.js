@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Spinner } from "reactstrap";
@@ -106,6 +107,15 @@ class TagsList extends Component {
 	render() {
 		return (
 			<main className="container">
+				<Helmet>
+					<meta charSet="utf-8" />
+					<title>{this.state.tagsSlug.toUpperCase() + " Manhwas | Manre"}</title>
+					<meta
+						name="description"
+						content={"Find " + this.state.tagsSlug + " manhwas"}
+					/>
+				</Helmet>
+
 				<div className="row mt-4 d-flex justify-content-between mb-0">
 					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
 						<h1><Link to="/">Manre</Link></h1>
