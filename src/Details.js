@@ -1,4 +1,6 @@
+
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import { render } from "react-dom";
 import Manhwa from "./components/Manhwa";
 import Disqus from "disqus-react";
@@ -41,8 +43,12 @@ class Details extends Component {
 						name="description"
 						content={"Find out more about '" + this.manhwaTitle + " manhwa"}
 					/>
-					‍
 				</Helmet>
+				<div className="row mt-4 d-flex justify-content-between mb-0">
+					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
+						<h1><Link to="/">Manre</Link></h1>
+					</div>
+				</div>
 
 				<Manhwa item={this.state.manhwa} detailsPage={true} />
 				<div className="row justify-content-center">

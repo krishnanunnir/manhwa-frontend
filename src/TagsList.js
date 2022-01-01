@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Spinner } from "reactstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -105,6 +106,12 @@ class TagsList extends Component {
 	render() {
 		return (
 			<main className="container">
+				<div className="row mt-4 d-flex justify-content-between mb-0">
+					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
+						<h1><Link to="/">Manre</Link></h1>
+					</div>
+				</div>
+
 				<div className="row justify-content-center">
 					<div className="col-md-6 col-md-offset-3">
 						<Alert

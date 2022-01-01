@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Manhwa from "./components/Manhwa";
 import { Alert } from "reactstrap";
@@ -70,7 +71,13 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
-        <div class="row justify-content-center mt-8 alertTitle">
+ 	<div className="row mt-4 d-flex justify-content-between mb-0">
+		<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
+			<h1><Link to="/">Manre</Link></h1>
+		</div>
+	</div>
+
+       <div class="row justify-content-center mt-8 alertTitle">
           <div className="col-md-6 col-md-offset-3">
             <Alert color="primary">
               <p>You can share this list by copying this url!</p>
