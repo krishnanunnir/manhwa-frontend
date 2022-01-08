@@ -26,10 +26,12 @@ export default class CustomModal extends Component {
         description: "",
         author: "",
         status: "Ongoing",
+        type: "Manhwa",
         coverimage: null,
       },
       tags: [],
-      dropdown: false,
+      statusDropdown: false,
+      typeDropdown: false,
     };
   }
 
@@ -57,8 +59,11 @@ export default class CustomModal extends Component {
     const manhwa = { ...this.state.manhwa, [name]: value };
     this.setState({ manhwa });
   };
-  handleDropdodwn = () => {
-    this.setState({ dropdown: !this.state.dropdown });
+  handleStatusDropdodwn = () => {
+    this.setState({ statusDropdown: !this.state.statusDropdown });
+  };
+  handleTypeDropdown = () => {
+    this.setState({ typeDropdown: !this.state.typeDropdown });
   };
 
   render() {
@@ -123,32 +128,57 @@ export default class CustomModal extends Component {
               ))}
             </Input>
           </FormGroup>
-          <Dropdown isOpen={this.state.dropdown} toggle={this.handleDropdodwn}>
-            <DropdownToggle caret>{this.state.manhwa.status}</DropdownToggle>
-            <DropdownMenu right>
-              <DropdownItem
-                name="status"
-                value="Ongoing"
-                onClick={this.handleChange}
-              >
-                Ongoing
-              </DropdownItem>
-              <DropdownItem
-                name="status"
-                value="Cancelled"
-                onClick={this.handleChange}
-              >
-                Cancelled
-              </DropdownItem>
-              <DropdownItem
-                name="status"
-                value="Completed"
-                onClick={this.handleChange}
-              >
-                Completed
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <FormGroup>
+              <Label for="manhwaStatus">Status</Label>
+              <Dropdown isOpen={this.state.statusDropdown} toggle={this.handleStatusDropdodwn}>
+                <DropdownToggle caret>{this.state.manhwa.status}</DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem
+                    name="status"
+                    value="Ongoing"
+                    onClick={this.handleChange}
+                  >
+                    Ongoing
+                  </DropdownItem>
+                  <DropdownItem
+                    name="status"
+                    value="Cancelled"
+                    onClick={this.handleChange}
+                  >
+                    Cancelled
+                  </DropdownItem>
+                  <DropdownItem
+                    name="status"
+                    value="Completed"
+                    onClick={this.handleChange}
+                  >
+                    Completed
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+          </FormGroup>
+          <FormGroup>
+              <Label for="manhwaType">Type</Label>
+              <Dropdown isOpen={this.state.typeDropdown} toggle={this.handleTypeDropdown}>
+                <DropdownToggle caret>{this.state.manhwa.type}</DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem
+                    name="type"
+                    value="Manhwa"
+                    onClick={this.handleChange}
+                  >
+                    Manhwa
+                  </DropdownItem>
+                  <DropdownItem
+                    name="type"
+                    value="Manhua"
+                    onClick={this.handleChange}
+                  >
+                    Manhua
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+          </FormGroup>
           <FormGroup>
             <Label for="manhwaCoverImage">Add a cover image</Label>
             <Input
