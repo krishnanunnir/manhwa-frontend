@@ -35,37 +35,46 @@ export default class CustomModal extends Component {
 	handleDropdodwn = () => {
 		this.setState({ dropdown: !this.state.dropdown });
 	};
+	clearList = () => {
+		localStorage.removeItem("activeManhwa");
+		this.setState({
+			activeManhwa: [],
+		});
+		window.location.reload();
+	};
+
 
 	render() {
 		const { toggle, onSave } = this.props;
 
 		return (
 			<Modal isOpen={true} toggle={toggle} className="modalText">
-				<ModalHeader toggle={toggle}>
-					Generate a list with the selected Manhwas
-				</ModalHeader>
+				<ModalHeader toggle={toggle}>Share your favourite Manhwas!</ModalHeader>
 				<ModalBody>
-					<Form>
+					<div className="alert alert-primary">
+						Please use the + button next to the Manhwas to add to the list!
+					</div>
+					<Form row>
 						<FormGroup>
-							<Label for="listTitle">List Name</Label>
+							<Label for="listTitle">Title</Label>
 							<Input
 								type="text"
 								id="listTitle"
 								name="title"
 								value={this.state.list.title}
 								onChange={this.handleChange}
-								placeholder="Enter Manhwa Title"
+								placeholder="Enter a title for the list you want to share!"
 							/>
 						</FormGroup>
 						<FormGroup>
-							<Label for="listAuthor">Username or Identifier</Label>
+							<Label for="listAuthor">Author</Label>
 							<Input
 								type="text"
 								id="listIdentifier"
 								name="identifier"
 								value={this.state.list.identifier}
 								onChange={this.handleChange}
-								placeholder="Enter Manhwa Author"
+								placeholder="A name or identifier so people know who made this list!"
 							/>
 						</FormGroup>
 						<FormGroup>
@@ -76,12 +85,21 @@ export default class CustomModal extends Component {
 								name="description"
 								value={this.state.list.description}
 								onChange={this.handleChange}
-								placeholder="Enter list description"
+								placeholder="A short description to let people know what this list is about!"
 							/>
 						</FormGroup>
 					</Form>
 				</ModalBody>
 				<ModalFooter>
+					<Button
+						color="danger"
+						href="javascript:void(null);"
+						className="mr-1"
+						onClick={this.clearList}
+					>
+						Clear all selected Manhwas!
+					</Button>
+
 					<Button color="success" onClick={() => onSave(this.state.list)}>
 						Save
 					</Button>

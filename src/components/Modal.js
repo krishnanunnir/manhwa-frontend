@@ -71,7 +71,7 @@ export default class CustomModal extends Component {
 
     return (
       <Modal isOpen={true} toggle={toggle} className="modalText">
-        <ModalHeader toggle={toggle}>Add a missing Manhwa</ModalHeader>
+        <ModalHeader toggle={toggle}>Favourite Manhwa missing? Please add here!</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>

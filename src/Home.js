@@ -103,13 +103,6 @@ class Home extends Component {
 	manhwaModalToggle = () => {
 		this.setState({ newManhwaModal: !this.state.newManhwaModal });
 	};
-	clearList = () => {
-		localStorage.removeItem("activeManhwa");
-		this.setState({
-			activeManhwa: [],
-		});
-		window.location.reload();
-	};
 	listModalToggle = () => {
 		this.setState({ listModal: !this.state.listModal });
 	};
@@ -212,23 +205,16 @@ class Home extends Component {
 						<a
 							href="javascript:void(null);"
 							className="mr-4 nav-text"
-							onClick={this.clearList}
-						>
-							Clear list
-						</a>
-						<a
-							href="javascript:void(null);"
-							className="mr-4 nav-text"
 							onClick={this.listModalToggle}
 						>
-							Generate list
+							Share Manhwas!
 						</a>
 						<a
 							href="javascript:void(null);"
 							onClick={this.manhwaModalToggle}
 							className="nav-text"
 						>
-							Add Manhwa
+							Add Manhwa?
 						</a>
 					</div>
 				</div>
