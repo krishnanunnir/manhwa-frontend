@@ -111,7 +111,7 @@ class AddManhwa extends Component {
 			.catch((err) => {
 				this.setMessage(
 					"danger",
-					"An error occured while trying to create the new Manhwa, please verify the entered data!"
+					"An error occured while trying to create the new Manhwa!"
 				);
 			});
 	};
@@ -119,14 +119,7 @@ class AddManhwa extends Component {
 	render() {
 		return (
 			<main className="container">
-				<div className="row mt-4 d-flex justify-content-between">
-					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
-						<h1>
-							<Link to="/">Manre</Link>
-						</h1>
-					</div>
-				</div>
-				<div className="row mt-2 mb-4 justify-content-center">
+				<div className="row justify-content-center">
 					<div
 						className="col-md-6 col-md-offset-3"
 						style={{ textAlign: "center" }}
@@ -135,12 +128,19 @@ class AddManhwa extends Component {
 							color={this.state.message["type"]}
 							isOpen={this.state.showMessage}
 							className="mt-4"
+							style={{ position: "fixed" }}
 						>
 							{this.state.message["message"]}
 						</Alert>
 					</div>
 				</div>
-
+				<div className="row my-4 d-flex justify-content-between">
+					<div className="flex" id="sitetitle" style={{ textAlign: "center" }}>
+						<h1>
+							<Link to="/">Manre</Link>
+						</h1>
+					</div>
+				</div>
 				<div className="row justify-content-center">
 					<div className="col-md-6 col-md-offset-3">
 						<Form>
