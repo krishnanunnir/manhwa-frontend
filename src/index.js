@@ -11,10 +11,11 @@ import TagsList from "./TagsList";
 import "bootstrap/dist/css/bootstrap.css";
 import withTracker from "./WithTracker";
 import HomePage from "./HomePage";
-
+import AddManhwa from "./AddManhwa"
 ReactDOM.render(
   <Router>
     <Switch>
+      <Route exact path="/addmanhwa" component={withTracker(AddManhwa)} />
       <Route exact path="/manhwa/:manhwaSlug" component={withTracker(Details)} />
       <Route exact path="/tag/:tagsSlug" component={withTracker(TagsList)} />
       <Route exact path="/list/:listSlug" component={withTracker(List)} />
