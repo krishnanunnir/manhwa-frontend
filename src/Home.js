@@ -3,8 +3,8 @@ import axios from "axios";
 import { Spinner } from "reactstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Manhwa from "./components/Manhwa";
-import Modal from "./components/Modal";
 import ListModal from "./components/CreateListModal";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import "./Manhwa.css";
 import "./index.css";
@@ -20,7 +20,6 @@ class Home extends Component {
 			next: null,
 			more_exist: true,
 			placeholder: "Search for Manhwa by name",
-			newManhwaModal: false,
 			listModal: false,
 			activeManhwa: [],
 			showMessage: false,
@@ -100,9 +99,6 @@ class Home extends Component {
 			.catch((error) => this.refreshList());
 	};
 
-	manhwaModalToggle = () => {
-		this.setState({ newManhwaModal: !this.state.newManhwaModal });
-	};
 	listModalToggle = () => {
 		this.setState({ listModal: !this.state.listModal });
 	};
@@ -110,35 +106,6 @@ class Home extends Component {
 		this.listModalToggle();
 	};
 
-	handleManhwaModalSubmit = (item, tags) => {
-		this.manhwaModalToggle();
-		const formData = new FormData();
-		formData.append("tags", tags);
-		for (var key in item) {
-			formData.append(key, item[key]);
-		}
-		axios({
-			method: "post",
-			url: `${baseUrl}/api/manhwa/`,
-			data: formData,
-			headers: {
-				"Accept-Language": "en-US,en;q=0.8",
-				"Content-Type": `multipart/form-data`,
-			},
-		})
-			.then((res) => {
-				this.setMessage(
-					"success",
-					"Succesfully submitted the Manhwa! Once verified it will be available"
-				);
-			})
-			.catch((err) => {
-				this.setMessage(
-					"danger",
-					"An error occured while trying to create the new Manhwa"
-				);
-			});
-	};
 	handleListModalSubmit = (item) => {
 		item = { ...item, manhwas: this.state.activeManhwa };
 		axios({
@@ -209,13 +176,9 @@ class Home extends Component {
 						>
 							Share Manhwas!
 						</a>
-						<a
-							href="javascript:void(null);"
-							onClick={this.manhwaModalToggle}
-							className="nav-text"
-						>
+						<Link to="/addmanhwa/" className="nav-text">
 							Add Manhwa?
-						</a>
+						</Link>
 					</div>
 				</div>
 				<div className="row justify-content-center mb-4">
@@ -256,12 +219,7 @@ class Home extends Component {
 						))}
 					</div>
 				</InfiniteScroll>
-				{this.state.newManhwaModal ? (
-					<Modal
-						toggle={this.manhwaModalToggle}
-						onSave={this.handleManhwaModalSubmit}
-					/>
-				) : null}
+
 				{this.state.listModal ? (
 					<ListModal
 						toggle={this.listModalToggle}

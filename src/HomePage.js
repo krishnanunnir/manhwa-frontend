@@ -16,7 +16,6 @@ class HomePage extends Component{
 			next: null,
 			tagsList: [],
 			more_exist: true,
-			newManhwaModal: false,
 			showMessage: false,
 			message: {
 				type: "danger",
