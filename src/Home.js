@@ -28,6 +28,9 @@ class Home extends Component {
 				message: "If you see this, send a screenshot please!",
 			},
 		};
+		if(this.props.location.state!= null){
+			this.message = this.props.location.state.message
+		}
 	}
 	componentDidMount() {
 		this.refreshList();
@@ -37,6 +40,12 @@ class Home extends Component {
 					? JSON.parse(localStorage.getItem("activeManhwa"))
 					: [],
 		});
+		if(this.message){
+			this.setState({
+				showMessage: true,
+				message: {type: this.message.type,message: this.message.message}
+			})
+		}
 	}
 	toggleMessage = () => {
 		this.setState({

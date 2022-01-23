@@ -9,10 +9,6 @@ import { baseUrl } from "./Constant";
 import { Link } from "react-router-dom";
 import {
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Input,

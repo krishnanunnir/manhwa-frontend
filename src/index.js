@@ -12,10 +12,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import withTracker from "./WithTracker";
 import HomePage from "./HomePage";
 import AddManhwa from "./AddManhwa"
+import Login from "./Login";
+import Signup from "./Signup";
 ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path="/addmanhwa" component={withTracker(AddManhwa)} />
+      <Route exact path="/login" component={withTracker(Login)} />
+      <Route exact path="/signup" component={withTracker(Signup)} />
       <Route exact path="/manhwa/:manhwaSlug" component={withTracker(Details)} />
       <Route exact path="/tag/:tagsSlug" component={withTracker(TagsList)} />
       <Route exact path="/list/:listSlug" component={withTracker(List)} />
