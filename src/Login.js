@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { LOGIN_SUCCESS } from "./action/type";
 import axios from "axios";
+import store from "./store";
 import { Badge } from "reactstrap";
 import "./Home.css";
 import "./Manhwa.css";
@@ -19,6 +21,7 @@ import {
 	DropdownToggle,
 	DropdownMenu,
 } from "reactstrap";
+import { AuthLogin } from "./action/auth";
 
 class Login extends Component {
 	constructor(props) {
@@ -106,10 +109,14 @@ class Login extends Component {
 									handleLogin(this.state.user)
 										.then((data) => {
 											// push history to / and send message data along with it
+											store.dispatch({ type: LOGIN_SUCCESS, payload: data });
 											this.props.history.push({
 												pathname: "/",
 												state: {
-													message: {type:"success" , message: "Login successful!",}
+													message: {
+														type: "success",
+														message: "Login successful!",
+													},
 												},
 											});
 										})

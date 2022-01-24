@@ -11,6 +11,10 @@ import "./index.css";
 import { Alert } from "reactstrap";
 import { baseUrl } from "./Constant";
 import { debounce } from "lodash";
+
+import { Provider } from "react-redux";
+import store from "./store";
+
 class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -23,14 +27,24 @@ class Home extends Component {
 			listModal: false,
 			activeManhwa: [],
 			showMessage: false,
+			isLoggedIn: false,
 			message: {
 				type: "danger",
 				message: "If you see this, send a screenshot please!",
 			},
 		};
-		if(this.props.location.state!= null){
-			this.message = this.props.location.state.message
+		if (this.props.location.state != null) {
+			this.message = this.props.location.state.message;
 		}
+		store.subscribe(() => {
+			// When state will be updated(in our case, when items will be fetched),
+			// we will update local component state and force component to rerender
+			// with new data.
+
+			this.setState({
+				isLoggedIn: store.getState().isLoggedIn,
+			});
+		});
 	}
 	componentDidMount() {
 		this.refreshList();
@@ -40,13 +54,14 @@ class Home extends Component {
 					? JSON.parse(localStorage.getItem("activeManhwa"))
 					: [],
 		});
-		if(this.message){
+		if (this.message) {
 			this.setState({
 				showMessage: true,
-				message: {type: this.message.type,message: this.message.message}
-			})
+				message: { type: this.message.type, message: this.message.message },
+			});
 		}
 	}
+
 	toggleMessage = () => {
 		this.setState({
 			showMessage: !this.state.showMessage,
@@ -185,6 +200,13 @@ class Home extends Component {
 						>
 							Share Manhwas!
 						</a>
+						{() => {
+							if(this.state.isLoggedIn)
+								return <Link to="/profile">Profile</Link>
+							else
+								return <Link to="/login">Login</Link>
+
+						}}
 						<Link to="/addmanhwa/" className="nav-text">
 							Add Manhwa?
 						</Link>
